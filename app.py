@@ -152,5 +152,5 @@ def home():
     })
 
 if __name__ == "__main__":
-    # Run the Flask app on localhost:5000
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))  # Use the PORT environment variable if available
+    app.run(host='0.0.0.0', port=port, debug=True)
