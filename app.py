@@ -3,8 +3,10 @@ import requests
 from bs4 import BeautifulSoup
 import json
 import re
+from werkzeug.middleware.proxy_fix import ProxyFix
 
 app = Flask(__name__)
+app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=1)
 
 def fetch_invidious_search_results(query, base_url="https://invidious.nerdvpn.de"):
     search_url = f"{base_url}/search?q={query}"
@@ -151,6 +153,6 @@ def home():
         "usage": "/search?q=<your_query>"
     })
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))  # Use the PORT environment variable if available
-    app.run(host='0.0.0.0', port=port, debug=True)
+if __name__ == '__main__':
+    app.wsgi_app = ProxyFix(app.wsgi_app)
+    app.run(host='0.0.0.0', port=5000)
