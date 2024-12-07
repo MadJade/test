@@ -137,7 +137,7 @@ def search():
     if not query:
         return jsonify({"error": "Query parameter 'q' is required."}), 400
 
-    base_invidious_url = "https://invidious.nerdvpn.de"
+    base_invidious_url = "https://invidious.jing.rocks"
     result = fetch_invidious_search_results(query, base_invidious_url)
 
     # Check if an error occurred during fetching
