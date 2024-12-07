@@ -8,7 +8,7 @@ from werkzeug.middleware.proxy_fix import ProxyFix
 app = Flask(__name__)
 app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_host=1)
 
-def fetch_invidious_search_results(query, base_url="https://inv.nadeko.net"):
+def fetch_invidious_search_results(query, base_url="https://invidious.jing.rocks"):
     search_url = f"{base_url}/search?q={query}"
     headers = {
         "User-Agent": (
